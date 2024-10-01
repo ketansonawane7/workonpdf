@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('serve_static', filename='css/styles.css') }}">
+    <title>WorkOnPDF</title>
+</head>
+<body>
+    <header>
+        <h1>WorkOnPDF - Your PDF Utility Tool</h1>
+    </header>
+    <main>
+        <h2>Convert PDF to Word</h2>
+        <form action="/convert_pdf_to_word" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Convert to Word</button>
+        </form>
+
+        <h2>Split PDF</h2>
+        <form action="/split_pdf" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Split PDF</button>
+        </form>
+
+        <h2>Merge PDF</h2>
+        <form action="/merge_pdf" method="post" enctype="multipart/form-data">
+            <input type="file" name="files" multiple required>
+            <button type="submit">Merge PDF</button>
+        </form>
+
+        <h2>Convert PDF to Image</h2>
+        <form action="/convert_pdf_to_image" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Convert to Image</button>
+        </form>
+
+        <h2>Convert Image to PDF</h2>
+        <form action="/convert_image_to_pdf" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Convert to PDF</button>
+        </form>
+    </main>
+    <footer>
+        <p>© 2024 WorkOnPDF - PDF Utility Tool</p>
+    </footer>
+</body>
+</html>
