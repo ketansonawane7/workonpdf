@@ -66,3 +66,65 @@ input[type="number"] {
     margin: 0;
     color: #999;
 }
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin: 20px 0;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+
+    input[type="file"],
+    input[type="number"] {
+        padding: 8px;
+    }
+
+    .drop-area {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 1.5rem;
+        padding: 8px 0;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        margin: 15px 0;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    input[type="file"],
+    input[type="number"] {
+        padding: 7px;
+        font-size: 0.9rem;
+    }
+
+    .drop-area {
+        padding: 10px;
+    }
+
+    .drop-area p {
+        font-size: 0.85rem;
+    }
+}
