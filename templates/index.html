@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('serve_static', filename='css/styles.css') }}">
-    <title>MergeSplitConvertPDF</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Merge, split, and convert PDF files quickly and easily. Use MergeSplitConvertPDF to handle all your PDF needs, from merging documents to converting them into Word or images.">
+    <meta name="keywords" content="PDF, merge PDF, split PDF, convert PDF, PDF to Word, PDF to image, image to PDF">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags for better social sharing -->
+    <meta property="og:title" content="MergeSplitConvertPDF - Your PDF Utility Tool">
+    <meta property="og:description" content="Easily merge, split, and convert PDF files. Try MergeSplitConvertPDF today.">
+    <meta property="og:url" content="https://www.mergesplitconvertpdf.com">
+    <meta property="og:type" content="website">
+    
+    <title>MergeSplitConvertPDF - Merge, Split, Convert PDFs Easily</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <header>
@@ -16,12 +29,14 @@
             <p>Our platform provides an easy way to manage your PDF files. Whether you want to convert, split, or merge your PDFs, we have got you covered! Upload your files using the buttons or simply drag and drop them into the designated areas.</p>
         </section>
 
+        <!-- Convert PDF to Word -->
         <h2>Convert PDF to Word</h2>
         <form action="/convert_pdf_to_word" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Convert to Word</button>
         </form>
 
+        <!-- Split PDF -->
         <h2>Split PDF</h2>
         <form action="/split_pdf" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
@@ -32,6 +47,7 @@
             <button type="submit">Split PDF</button>
         </form>
 
+        <!-- Merge PDF with drag-and-drop -->
         <h2>Merge PDF</h2>
         <form action="/merge_pdf" method="post" enctype="multipart/form-data" class="drag-drop">
             <input type="file" name="files" multiple required>
@@ -41,21 +57,25 @@
             <button type="submit">Merge PDF</button>
         </form>
 
+        <!-- Convert PDF to Image -->
         <h2>Convert PDF to Image</h2>
         <form action="/convert_pdf_to_image" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Convert to Image</button>
         </form>
 
+        <!-- Convert Image to PDF -->
         <h2>Convert Image to PDF</h2>
         <form action="/convert_image_to_pdf" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Convert to PDF</button>
         </form>
     </main>
+    
     <footer>
         <p>© 2024 MergeSplitConvertPDF - PDF Utility Tool</p>
     </footer>
+    
     <script>
         function handleDrop(event) {
             event.preventDefault();
