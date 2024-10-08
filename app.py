@@ -12,6 +12,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'  # Folder to save uploaded files
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+# Sitemap route
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.root_path, 'sitemap.xml')
+
 @app.route('/')
 def index():
     return render_template('index.html')
