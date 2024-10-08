@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: #FF2D20;
+    background-color: #4A90E2; /* Softer blue */
     color: white;
     width: 100%;
     padding: 10px 0;
@@ -25,8 +25,13 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
-    color: #FF2D20;
+    color: #4A90E2; /* Softer blue */
     margin-bottom: 15px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 form {
@@ -39,51 +44,25 @@ form {
     text-align: center;
 }
 
-input[type="file"] {
+input[type="file"],
+input[type="number"] {
     padding: 10px;
-    border: 2px solid #FF2D20;
+    border: 2px solid #4A90E2; /* Softer blue */
     border-radius: 5px;
     display: inline-block;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-button {
-    background-color: #FF2D20;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+.drop-area {
+    border: 2px dashed #4A90E2; /* Softer blue */
     border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #e0241a;
-}
-
-select {
-    padding: 10px;
-    border: 2px solid #FF2D20;
-    border-radius: 5px;
-    display: inline-block;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-footer {
-    margin-top: 50px;
-    color: #666;
-}
-
-.action-header {
+    padding: 20px;
+    margin: 15px 0;
     text-align: center;
-    margin-bottom: 50px;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+.drop-area p {
+    margin: 0;
+    color: #999;
 }
