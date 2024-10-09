@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f0f4f7; /* Lighter neutral background */
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,9 +12,10 @@ header {
     background-color: #4A90E2; /* Softer blue */
     color: white;
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0;
     text-align: center;
     font-size: 2rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -32,6 +33,7 @@ h2 {
 .intro {
     text-align: center;
     margin-bottom: 30px;
+    max-width: 700px;
 }
 
 form {
@@ -52,6 +54,31 @@ input[type="number"] {
     display: inline-block;
     width: 100%;
     margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="file"]:hover,
+input[type="number"]:hover {
+    border-color: #357ABD; /* Darker blue on hover */
+}
+
+button {
+    background-color: #4A90E2; /* Softer blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #357ABD; /* Darker blue on hover */
+}
+
+button:active {
+    background-color: #285C8C; /* Even darker blue on active state */
 }
 
 .drop-area {
@@ -60,11 +87,54 @@ input[type="number"] {
     padding: 20px;
     margin: 15px 0;
     text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.drop-area:hover {
+    background-color: #f0f4f7; /* Slight highlight on hover */
 }
 
 .drop-area p {
     margin: 0;
     color: #999;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Progress bar (optional placeholder) */
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.progress-bar-inner {
+    height: 20px;
+    width: 0;
+    background-color: #4A90E2; /* Softer blue */
+    border-radius: 5px;
+    transition: width 0.4s ease;
 }
 
 /* Media Queries for Mobile Responsiveness */
