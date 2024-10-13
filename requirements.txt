@@ -5,4 +5,4 @@ PyPDF2
 pdf2docx
 pdf2image
 Pillow
-Pptx
+Python-pptx
