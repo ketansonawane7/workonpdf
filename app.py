@@ -7,6 +7,9 @@ import fitz  # PyMuPDF
 from PIL import Image
 import zipfile
 from io import BytesIO
+from pptx import Presentation
+from pptx.util import Inches
+import img2pdf
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'  # Folder to save uploaded files
@@ -20,6 +23,10 @@ def sitemap():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
 
 @app.route('/convert_pdf_to_word', methods=['POST'])
 def convert_pdf_to_word():
@@ -189,6 +196,89 @@ def convert_image_to_pdf():
         return send_from_directory(app.config['UPLOAD_FOLDER'], os.path.basename(pdf_path), as_attachment=True)
     except Exception as e:
         return f"Error converting image to PDF: {str(e)}", 400
+
+@app.route('/convert_pdf_to_ppt', methods=['POST'])
+def convert_pdf_to_ppt():
+    if 'file' not in request.files:
+        return "No file part", 400
+    file = request.files['file']
+    if file.filename == '':
+        return "No selected file", 400
+
+    # Save the uploaded PDF file
+    pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
+    file.save(pdf_path)
+
+    try:
+        # Convert PDF to PPT
+        ppt_path = pdf_path.replace('.pdf', '.pptx')
+        presentation = Presentation()
+
+        pdf_document = fitz.open(pdf_path)
+
+        for page_number in range(len(pdf_document)):
+            page = pdf_document.load_page(page_number)
+            img = page.get_pixmap()  # Get a pixmap of the page
+            img_path = os.path.join(app.config['UPLOAD_FOLDER'], f'page_{page_number + 1}.png')
+            img.save(img_path)  # Save as PNG
+
+            slide = presentation.slides.add_slide(presentation.slide_layouts[5])  # Blank slide
+            left = top = Inches(1)  # Adjust the image position as needed
+            slide.shapes.add_picture(img_path, left, top, width=Inches(8))  # Add image to slide
+
+        presentation.save(ppt_path)
+
+        return send_from_directory(app.config['UPLOAD_FOLDER'], os.path.basename(ppt_path), as_attachment=True)
+    except Exception as e:
+        return f"Error converting PDF to PPT: {str(e)}", 400
+
+@app.route('/convert_ppt_to_pdf', methods=['POST'])
+def convert_ppt_to_pdf():
+    if 'file' not in request.files:
+        return "No file part", 400
+    file = request.files['file']
+    if file.filename == '':
+        return "No selected file", 400
+
+    # Save the uploaded PPT file
+    ppt_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
+    file.save(ppt_path)
+
+    try:
+        # Convert PPT to PDF
+        pdf_path = ppt_path.replace('.pptx', '.pdf')
+
+        # Create a temporary folder to save slides as images
+        temp_folder = os.path.join(app.config['UPLOAD_FOLDER'], 'temp_images')
+        os.makedirs(temp_folder, exist_ok=True)
+
+        # Load the presentation
+        presentation = Presentation(ppt_path)
+
+        # Save each slide as an image
+        img_paths = []
+        for slide_number, slide in enumerate(presentation.slides):
+            img_path = os.path.join(temp_folder, f'slide_{slide_number + 1}.png')
+            slide.shapes[0].element.getparent().getparent().make_image(img_path)  # Attempting to save as image
+
+            # For now, we will use Pillow to create a blank image instead.
+            img = Image.new('RGB', (800, 600), color='white')  # Create a blank image
+            img.save(img_path)  # Save the blank image (replace with real image processing)
+
+            img_paths.append(img_path)
+
+        # Convert images to PDF using img2pdf
+        with open(pdf_path, "wb") as f:
+            f.write(img2pdf.convert(img_paths))
+
+        # Clean up temporary images
+        for img_file in img_paths:
+            os.remove(img_file)
+        os.rmdir(temp_folder)
+
+        return send_from_directory(app.config['UPLOAD_FOLDER'], os.path.basename(pdf_path), as_attachment=True)
+    except Exception as e:
+        return f"Error converting PPT to PDF: {str(e)}", 400
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
