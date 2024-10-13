@@ -159,6 +159,41 @@ nav ul li a:hover {
     padding: 20px;
 }
 
+/* Blog Styles */
+main {
+    padding: 20px;
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+header {
+    background-color: #4A90E2; /* Softer blue */
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    margin: 10px 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #4A90E2; /* Softer blue */
+    color: white;
+}
+
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
     form {
