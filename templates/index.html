@@ -3,41 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Merge, split, and convert PDF files for free. Use MergeSplitConvertPDF to handle all your PDF needs, from merging documents to converting them to word and images.">
-    <meta name="keywords" content="PDF, merge PDF, split PDF, convert PDF, PDF to Word, PDF to image, image to PDF, pdf split, pdf merge, convert pdf to word, pdf to jpg, pdf to png, free pdf to word, free merge pdf, free split pdf, free pdf to jpeg, free pdf to png">
+    <meta name="description" content="Merge, split, and convert PDF files for free. Use SplitMergeConvertPDF to handle all your PDF needs, from merging documents to converting them to word and images.">
+    <meta name="keywords" content="PDF, merge PDF, split PDF, convert PDF, PDF to Word, PDF to image, image to PDF, pdf split, pdf merge, convert pdf to word, pdf to jpg, pdf to png, free pdf to word, free merge pdf, free split pdf, free pdf to jpeg, free pdf to png, ppt to pdf, pdf to ppt">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph Tags for better social sharing -->
-    <meta property="og:title" content="MergeSplitConvertPDF - Your PDF Utility Tool">
-    <meta property="og:description" content="Easily merge, split, and convert PDF files. Try MergeSplitConvertPDF today.">
-    <meta property="og:url" content="https://www.mergesplitconvertpdf.com">
+    <meta property="og:title" content="SplitMergeConvertPDF - Your PDF Utility Tool">
+    <meta property="og:description" content="Easily merge, split, and convert PDF files. Try SplitMergeConvertPDF today.">
+    <meta property="og:url" content="https://www.splitmergeconvertpdf.com">
     <meta property="og:type" content="website">
-    
-    <title>MergeSplitConvertPDF - Merge, Split, Convert PDFs Easily</title>
+
+    <title>SplitMergeConvertPDF - Merge, Split, Convert PDFs Easily</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* Simple styling for the navigation tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .nav-tabs a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-tabs a:hover {
+            background-color: #d0d0d0;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>MergeSplitConvertPDF - Your PDF Utility Tool</h1>
+        <h1>SplitMergeConvertPDF - Your PDF Utility Tool</h1>
+        <nav class="nav-tabs">
+            <a href="#convert_pdf_to_word">PDF to Word</a>
+            <a href="#split_pdf">Split PDF</a>
+            <a href="#merge_pdf">Merge PDF</a>
+            <a href="#convert_pdf_to_image">PDF to Image</a>
+            <a href="#convert_image_to_pdf">Image to PDF</a>
+            <a href="#convert_ppt_to_pdf">PPT to PDF</a>
+            <a href="#convert_pdf_to_ppt">PDF to PPT</a>
+        </nav>
     </header>
     <main>
         <section class="intro">
-            <h2>Welcome to MergeSplitConvertPDF</h2>
+            <h2>Welcome to SplitMergeConvertPDF</h2>
             <p>Our platform provides an easy way to manage your PDF files. Whether you want to convert, split, or merge your PDFs, we have got you covered! Upload your files using the buttons or simply drag and drop them into the designated areas.</p>
         </section>
 
         <!-- Convert PDF to Word -->
-        <h2>Convert PDF to Word</h2>
+        <h2 id="convert_pdf_to_word">Convert PDF to Word</h2>
         <form action="/convert_pdf_to_word" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Convert to Word</button>
         </form>
 
         <!-- Split PDF -->
-        <h2>Split PDF</h2>
+        <h2 id="split_pdf">Split PDF</h2>
         <form action="/split_pdf" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <label for="start_page">Start Page:</label>
@@ -48,7 +77,7 @@
         </form>
 
         <!-- Merge PDF with drag-and-drop -->
-        <h2>Merge PDF</h2>
+        <h2 id="merge_pdf">Merge PDF</h2>
         <form action="/merge_pdf" method="post" enctype="multipart/form-data" class="drag-drop">
             <input type="file" name="files" multiple required>
             <div class="drop-area" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
@@ -58,18 +87,57 @@
         </form>
 
         <!-- Convert PDF to Image -->
-        <h2>Convert PDF to Image</h2>
+        <h2 id="convert_pdf_to_image">Convert PDF to Image</h2>
         <form action="/convert_pdf_to_image" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Convert to Image</button>
         </form>
 
         <!-- Convert Image to PDF -->
-        <h2>Convert Image to PDF</h2>
+        <h2 id="convert_image_to_pdf">Convert Image to PDF</h2>
         <form action="/convert_image_to_pdf" method="post" enctype="multipart/form-data">
             <input type="file" name="file" required>
             <button type="submit">Convert to PDF</button>
         </form>
+
+        <!-- Convert PPT to PDF -->
+        <h2 id="convert_ppt_to_pdf">Convert PPT to PDF</h2>
+        <form action="/convert_ppt_to_pdf" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Convert to PDF</button>
+        </form>
+
+        <!-- Convert PDF to PPT -->
+        <h2 id="convert_pdf_to_ppt">Convert PDF to PPT</h2>
+        <form action="/convert_pdf_to_ppt" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <button type="submit">Convert to PPT</button>
+        </form>
+
+        <!-- New Blog Section -->
+        <section class="blog">
+            <h2>Latest Blog Posts</h2>
+            <article>
+                <h3>1. How to Merge PDF Files Easily</h3>
+                <p>Merging PDF files is simple and efficient. You can easily combine multiple PDFs into one document using our tool. Just upload the files and click merge!</p>
+            </article>
+            <article>
+                <h3>2. Splitting PDF Documents: A Quick Guide</h3>
+                <p>Need to extract specific pages from a PDF? Our split feature allows you to select the pages you want and create a new PDF with just those pages.</p>
+            </article>
+            <article>
+                <h3>3. Converting PDF to Word: The Benefits</h3>
+                <p>Converting PDF files to Word format can help in editing and reusing content easily. Use our PDF to Word converter for quick results.</p>
+            </article>
+            <article>
+                <h3>4. Image to PDF Conversion: A Handy Tool</h3>
+                <p>Our platform supports converting images to PDFs effortlessly. Just upload your images, and they will be converted to a high-quality PDF.</p>
+            </article>
+            <article>
+                <h3>5. Understanding Different PDF File Formats</h3>
+                <p>Learn about the various formats of PDFs and their uses. Our guide will help you understand which format is best for your needs.</p>
+            </article>
+        </section>
 
         <!-- New FAQ Section for SEO -->
         <section class="faq">
@@ -92,11 +160,11 @@
             </article>
         </section>
     </main>
-    
+
     <footer>
-        <p>© 2024 MergeSplitConvertPDF - PDF Utility Tool</p>
+        <p>© 2024 SplitMergeConvertPDF - PDF Utility Tool</p>
     </footer>
-    
+
     <script>
         function handleDrop(event) {
             event.preventDefault();
